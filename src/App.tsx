@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider as StyletronProvider } from 'styletron-react';
+import { Client as Styletron } from 'styletron-engine-atomic';
+import { Button } from 'baseui/button';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const engine = new Styletron();
+
+class Example extends React.Component {
+  render() {
+    return (
+      <React.Fragment>
+        <Button>hey!</Button>
+      </React.Fragment>
+    );
+  }
 }
 
+function App() {
+  return (
+    <StyletronProvider value={engine}>
+      <Example />
+    </StyletronProvider>
+  );
+}
 export default App;
